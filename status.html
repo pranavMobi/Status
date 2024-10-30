@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Status</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #f0f0f0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            width: 90%;
+            max-width: 600px;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #1e1e1e;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+        }
+        h1 {
+            text-align: center;
+            color: #80cbc4;
+        }
+        .task {
+            margin: 8px 0;
+            padding: 10px;
+            background-color: #333;
+            border-radius: 4px;
+        }
+        .profile-pic {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            background-color: #555;
+            background-image: url('BigDawgs.png');
+            background-size: cover;
+        }
+        .zoom {
+            padding: 10px;
+            transition: transform .2s;
+        }
+        .zoom:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="profile-pic zoom"></div>
+        <h1 id="project-name"></h1>
+        <h2>Current Task</h2>
+        <p id="current-task-name"></p>
+        <p id="current-task-desc"></p>
+        <h2>Latest Finished Tasks</h2>
+        <div id="finished-tasks"></div>
+    </div>
+
+    <script>
+    
+        const projectData = {
+            "projectName": "ECRM",
+            "currentTask": {
+                "name": "Update Customer Currency with Quote Currency",
+                "description": "Update the customer currency object based on quote stage from quoteDetails API."
+            },
+            "latestFinishedTasks": [
+                "Bugfix on EQA-3800: Cost price is displayed twice from Sales Manager login for Stock Item",
+                "EQA-3083: Sales Manager user is not able to update the Cost price even if the parameter is set to Yes"
+            ]
+        };
+
+        // Display project data in the HTML
+        document.getElementById("project-name").innerText = projectData.projectName;
+        document.getElementById("current-task-name").innerText = `Name: ${projectData.currentTask.name}`;
+        document.getElementById("current-task-desc").innerText = `Description: ${projectData.currentTask.description}`;
+
+        const finishedTasksContainer = document.getElementById("finished-tasks");
+        projectData.latestFinishedTasks.forEach(task => {
+            const taskElement = document.createElement("div");
+            taskElement.classList.add("task");
+            taskElement.innerText = task;
+            finishedTasksContainer.appendChild(taskElement);
+        });
+    </script>
+</body>
+</html>
